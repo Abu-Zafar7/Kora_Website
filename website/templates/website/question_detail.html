@@ -1,0 +1,90 @@
+{% extends 'website/base.html' %}
+
+{% block content %}
+<div class="card mb-4">
+    <div class="card-body">
+        <h1 class="card-title">{{ question.title }}</h1>
+        <p class="card-text">{{ question.content }}</p>
+        {% if question.image %}
+            <div class="text-center my-3">
+                <img src="{{ question.image.url }}" alt="Question Image" class="img-fluid" style="max-width: 500px; max-height: 400px; object-fit: contain;">
+            </div>
+        {% endif %}
+        <p class="card-text">
+            <small class="text-muted">
+                Asked by {{ question.author.username }} on {{ question.created_at|date:"F d, Y" }}
+            </small>
+        </p>
+    </div>
+</div>
+
+<h2>Answers</h2>
+{% for answer in answers %}
+<div class="card mb-3">
+    <div class="card-body">
+        <p class="card-text">{{ answer.content }}</p>
+        <div class="d-flex justify-content-between align-items-center">
+            <small class="text-muted">
+                Answered by {{ answer.author.username }} on {{ answer.created_at|date:"F d, Y" }}
+            </small>
+            <div class="btn-group">
+                <button class="btn btn-sm btn-outline-primary upvote-btn" data-answer-id="{{ answer.id }}">
+                    Upvote ({{ answer.upvote_count }})
+                </button>
+                <button class="btn btn-sm btn-outline-danger downvote-btn" data-answer-id="{{ answer.id }}">
+                    Downvote ({{ answer.downvote_count }})
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% empty %}
+<p>No answers yet. Be the first to answer!</p>
+{% endfor %}
+
+{% if user.is_authenticated %}
+<div class="card mt-4">
+    <div class="card-body">
+        <h3>Your Answer</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Post Answer</button>
+        </form>
+    </div>
+</div>
+{% else %}
+<p>Please <a href="{% url 'login' %}">login</a> to post an answer.</p>
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+   
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+            }
+        }
+    });
+
+    $('.upvote-btn').click(function() {
+        const answerId = $(this).data('answer-id');
+        $.post(`/answer/${answerId}/upvote/`, function(data) {
+            $(`[data-answer-id="${answerId}"].upvote-btn`).text(`Upvote (${data.upvotes})`);
+            $(`[data-answer-id="${answerId}"].downvote-btn`).text(`Downvote (${data.downvotes})`);
+        });
+    });
+
+    $('.downvote-btn').click(function() {
+        const answerId = $(this).data('answer-id');
+        $.post(`/answer/${answerId}/downvote/`, function(data) {
+            $(`[data-answer-id="${answerId}"].upvote-btn`).text(`Upvote (${data.upvotes})`);
+            $(`[data-answer-id="${answerId}"].downvote-btn`).text(`Downvote (${data.downvotes})`);
+        });
+    });
+});
+</script>
+{% endblock %} 

@@ -1,0 +1,30 @@
+{% extends 'website/base.html' %}
+
+{% block content %}
+<h1>Questions</h1>
+<div class="row">
+    {% for question in questions %}
+    <div class="col-md-12 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <a href="{% url 'question_detail' question.pk %}" class="text-decoration-none">
+                        {{ question.title }}
+                    </a>
+                </h5>
+                <p class="card-text">{{ question.content|truncatewords:50 }}</p>
+                <p class="card-text">
+                    <small class="text-muted">
+                        Asked by {{ question.author.username }} on {{ question.created_at|date:"F d, Y" }}
+                    </small>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-md-12">
+        <p>No questions have been asked yet. Please login to ask a question.</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %} 
