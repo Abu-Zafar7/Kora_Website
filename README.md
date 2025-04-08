@@ -114,18 +114,6 @@ Kora_website/
 - Dismissible success/error messages
 - Clean and intuitive interface
 
-## Contributing
-
-1. Fork the repository
-2. Create a new branch for your feature
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
 ## Acknowledgments
 
 - Django framework
