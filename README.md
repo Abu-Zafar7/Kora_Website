@@ -119,3 +119,20 @@ Kora_website/
 - Django framework
 - Bootstrap for styling
 - jQuery for AJAX functionality
+
+## Screenshots of the working app
+![Screenshot (120)](https://github.com/user-attachments/assets/80fc4a90-40d6-4ab7-a2be-cea8df8df3c2)
+
+![Screenshot (121)](https://github.com/user-attachments/assets/29804dea-1abc-482e-aaab-e15abdd2efac)
+
+![Screenshot (122)](https://github.com/user-attachments/assets/9e062bd7-f7c6-40c8-b280-e1e55b309f61)
+
+![Screenshot (123)](https://github.com/user-attachments/assets/b12526a0-d5a4-4f81-8275-e265b241c641)
+
+![Screenshot (124)](https://github.com/user-attachments/assets/31c457ce-4ab0-4524-82ea-17a3f5f65616)
+
+![Screenshot (126)](https://github.com/user-attachments/assets/8e262c85-02f3-4ac4-b2b6-10bc77ac3d7d)
+
+![Screenshot (127)](https://github.com/user-attachments/assets/b244a654-afc0-4900-993f-259201d3a708)
+
+
