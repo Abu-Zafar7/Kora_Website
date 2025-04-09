@@ -81,7 +81,6 @@ Kora_website/
 ├── kora/                 # Project settings
 ├── website/             # Main application
 │   ├── templates/      # HTML templates
-│   ├── static/        # Static files
 │   ├── models.py      # Database models
 │   ├── views.py       # View functions
 │   ├── forms.py       # Form classes
